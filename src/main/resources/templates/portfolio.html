@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Portföyüm - StockTracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+</head>
+<body>
+
+<nav class="navbar navbar-dark bg-transparent py-3 border-bottom border-secondary">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-neon-green" href="/">
+            <i class="fas fa-arrow-left me-2"></i>
+            <span th:text="#{nav.home}">Merkez</span>
+        </a>
+
+        <div class="d-flex align-items-center">
+            <div class="me-4 border-end border-secondary pe-3">
+                <a href="?lang=tr" class="text-white small fw-bold text-decoration-none me-2">TR</a>
+                <span class="text-secondary">|</span>
+                <a href="?lang=en" class="text-white small fw-bold text-decoration-none ms-2">EN</a>
+            </div>
+
+            <span class="text-white me-3" th:text="#{msg.welcome}">Hoşgeldin</span>
+            <a href="/login" class="btn btn-sm btn-outline-danger rounded-pill" th:text="#{nav.logout}">Çıkış</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-lg-4 mb-4">
+            <div class="glass-card p-4">
+                <h5 class="mb-3 text-white">
+                    <i class="fas fa-plus-circle me-2 text-neon-green"></i>
+                    <span th:text="#{btn.add}">Hisse Ekle</span>
+                </h5>
+
+                <form th:action="@{/ekle}" th:object="${yeniHisse}" method="post">
+                    <div class="mb-3">
+                        <label class="text-secondary small" th:text="#{label.symbol}">Sembol</label>
+                        <input type="text" id="symbolInput" th:field="*{symbol}" class="form-control form-control-dark" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="text-secondary small" th:text="#{label.company}">Şirket Adı</label>
+                        <input type="text" id="nameInput" th:field="*{name}" class="form-control form-control-dark" required>
+                    </div>
+                    <div class="row g-2 mb-3">
+                        <div class="col">
+                            <label class="text-secondary small" th:text="#{label.price}">Alış Fiyatı</label>
+                            <input type="number" id="buyPriceInput" step="0.01" th:field="*{buyPrice}" class="form-control form-control-dark" required>
+                            <small id="marketPriceLabel" class="text-neon-green" style="font-size: 0.75rem; display:block; margin-top:5px; min-height:15px;"></small>
+                        </div>
+                        <div class="col">
+                            <label class="text-secondary small" th:text="#{label.quantity}">Adet</label>
+                            <input type="number" th:field="*{quantity}" class="form-control form-control-dark" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success w-100 fw-bold"
+                            style="background-color: #00ff88; border:none; color:black;"
+                            th:text="#{btn.add}">Ekle</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="glass-card p-4">
+                <h5 class="mb-4 text-white" th:text="#{header.assets ?: 'Varlıklarım'}">Varlıklarım</h5>
+                <div class="table-responsive">
+                    <table class="table table-dark-custom table-hover">
+                        <thead>
+                        <tr>
+                            <th th:text="#{col.symbol}">Sembol</th>
+                            <th th:text="#{col.company}">Şirket</th>
+                            <th th:text="#{col.qty}">Adet</th>
+                            <th th:text="#{col.cost}">Maliyet</th>
+                            <th th:text="#{col.market}">Piyasa</th>
+                            <th th:text="#{col.pl}">Kâr/Zarar</th>
+                            <th th:text="#{col.action}">İşlem</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="hisse : ${hisseler}">
+                            <td class="fw-bold text-neon-green" th:text="${hisse.symbol}"></td>
+                            <td class="text-white-50" th:text="${hisse.name}"></td>
+                            <td th:text="${hisse.quantity}"></td>
+                            <td th:text="${hisse.buyPrice} + ' $'"></td>
+                            <td th:text="${hisse.currentPrice} + ' $'" class="fw-bold text-white"></td>
+
+                            <td>
+                                        <span th:class="${hisse.profitLoss >= 0} ? 'text-neon-green' : 'text-neon-red'">
+                                            <i th:class="${hisse.profitLoss >= 0} ? 'fas fa-caret-up' : 'fas fa-caret-down'"></i>
+                                            <span th:text="${#numbers.formatDecimal(hisse.profitLoss, 1, 2)} + ' $'"></span>
+                                        </span>
+                            </td>
+
+                            <td>
+                                <a th:href="@{/sil/{id}(id=${hisse.id})}" class="text-danger">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div th:if="${#lists.isEmpty(hisseler)}" class="text-center py-5 text-secondary">
+                    <i class="fas fa-wallet fa-3x mb-3 opacity-25"></i>
+                    <p th:text="#{msg.empty}">Portföyün boş.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $("#symbolInput, #nameInput").autocomplete({
+            source: function(request, response) {
+                $.ajax({
+                    url: "/api/stocks/search",
+                    dataType: "json",
+                    data: { query: request.term },
+                    success: function(data) { response(data); }
+                });
+            },
+            minLength: 2,
+            select: function(event, ui) {
+                var parts = ui.item.value.split(" - ");
+                $("#symbolInput").val(parts[0]);
+                $("#nameInput").val(parts[1]);
+
+                $("#marketPriceLabel").text("...");
+                $.get("/api/stocks/price?symbol=" + parts[0], function(price) {
+                    $("#buyPriceInput").val(price);
+                    $("#marketPriceLabel").text(price + " $");
+                });
+                return false;
+            }
+        });
+    });
+</script>
+</body>
+</html>

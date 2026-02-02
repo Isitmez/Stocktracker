@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #000000;
+    color: #e0e0e0;
+    min-height: 100vh;
+}
+.glass-card {
+    background: #121212;
+    border: 1px solid #333;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-5px);
+    border-color: #00ff88;
+}
+
+
+.nav-card {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+}
+.nav-card:hover h3 { color: #00ff88; }
+.nav-card i { transition: transform 0.3s; }
+.nav-card:hover i { transform: scale(1.2); }
+
+
+.table-dark-custom {
+    background-color: #121212;
+    color: #fff;
+}
+.table-dark-custom th {
+    background-color: #1e1e1e;
+    color: #888;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    border-bottom: 2px solid #333;
+}
+.table-dark-custom td {
+    border-bottom: 1px solid #222;
+    vertical-align: middle;
+}
+
+/* Inputlar */
+.form-control-dark {
+    background-color: #0a0a0a;
+    border: 1px solid #333;
+    color: white;
+    padding: 12px;
+}
+.form-control-dark:focus {
+    background-color: #000;
+    border-color: #00ff88;
+    color: white;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+}
+.text-neon-green { color: #00ff88 !important; }
+.text-neon-red { color: #ff4b4b !important; }
+.bg-neon-green { background-color: #00ff88; color: black; font-weight: bold; }
+.balance-display {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: -webkit-linear-gradient(45deg, #fff, #888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

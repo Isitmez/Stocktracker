@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="tr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{login.title}">Giriş Yap</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="d-flex align-items-center justify-content-center position-relative">
+
+<div class="position-absolute top-0 end-0 p-4">
+    <a href="?lang=tr" class="text-white small fw-bold text-decoration-none me-2">TR</a>
+    <span class="text-secondary">|</span>
+    <a href="?lang=en" class="text-white small fw-bold text-decoration-none ms-2">EN</a>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="glass-card p-5 text-center">
+                <div class="mb-4">
+                    <i class="fas fa-chart-line fa-3x" style="color: #00ff88;"></i>
+                </div>
+                <h2 class="mb-4 fw-bold">StockTracker</h2>
+                <p class="mb-4 text-white-50" th:text="#{login.subtitle}">Portföyünü yönet.</p>
+
+                <form action="/" method="get">
+                    <div class="mb-3 input-group">
+                        <span class="input-group-text bg-transparent border-0 text-white"><i class="fas fa-user"></i></span>
+                        <input type="text" class="form-control form-control-glass" th:placeholder="#{login.username}">
+                    </div>
+                    <div class="mb-4 input-group">
+                        <span class="input-group-text bg-transparent border-0 text-white"><i class="fas fa-lock"></i></span>
+                        <input type="password" class="form-control form-control-glass" th:placeholder="#{login.password}">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 py-2 rounded-pill shadow-lg fw-bold"
+                            style="background-color: #00ff88; border:none; color:black;"
+                            th:text="#{login.btn}">
+                        Giriş Yap
+                    </button>
+                </form>
+                <div class="mt-3">
+                    <small class="text-white-50">
+                        <span th:text="#{login.no_account}">Hesabın yok mu?</span>
+                        <a href="#" class="text-white fw-bold" th:text="#{login.register}">Kayıt Ol</a>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
