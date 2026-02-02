@@ -18,12 +18,13 @@ Bu proje, Spring Boot ve Thymeleaf kullanılarak geliştirilmiş, canlı borsa v
 * **Tools:** Maven, Lombok
 
 ## 📸 Ekran Görüntüleri
-<img width="2091" height="1239" alt="img" src="https://github.com/user-attachments/assets/a991b40c-952e-4fb9-ab1c-7282cf402f3d" />
+<img width="1334" height="1000" alt="img_1" src="https://github.com/user-attachments/assets/a926eec0-72e3-4810-b13b-763b726fbd56" />
 
-<img width="1334" height="1000" alt="img_1" src="https://github.com/user-attachments/assets/4ae99ea5-86d6-4932-8373-92bbb66e0aec" />
-<img width="1812" height="827" alt="img_2" src="https://github.com/user-attachments/assets/9fb3f91d-c28a-4fa3-98b8-60b027a1d62e" />
-<img width="1752" height="904" alt="img_3" src="https://github.com/user-attachments/assets/0449e9b9-dbe8-4907-8875-e466bac78417" />
+<img width="1812" height="827" alt="img_2" src="https://github.com/user-attachments/assets/ce406f0a-504f-45ef-abd4-85a7d097bba4" />
 
+<img width="1752" height="904" alt="img_3" src="https://github.com/user-attachments/assets/91ca2a44-9887-4d56-a6ca-1265357f6ba1" />
+
+<img width="2091" height="1239" alt="img" src="https://github.com/user-attachments/assets/f74e5635-d0d0-46f4-8517-bb6443885751" />
 
 ## 📦 Kurulum
 
